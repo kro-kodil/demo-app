@@ -1,33 +1,26 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { take } from "rxjs/operators";
 import { DemoService } from "src/app/modules/demo/services/demo.service";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { UserData } from "src/app/modules/demo/models/user-data.model";
+import { Observable, of } from "rxjs";
 
+@UntilDestroy()
 @Component({
   selector: "app-demo",
   templateUrl: "./demo.component.html",
   styleUrls: ["./demo.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DemoComponent implements OnInit {
+  public userData$: Observable<Array<UserData>> = of([]);
+
   constructor(private _demoService: DemoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getData();
+  }
 
   private getData(): void {
-    this._demoService
-      .getData()
-      .pipe(
-        take(1),
-        takeUntil(this.alive$),
-        finalize(() => this.loading$.next(false))
-      )
-      .subscribe(
-        (res: KPIData) => {
-          this.kpiData = res;
-        },
-        (err) => {
-          this._toastr.error(messagesEnv.dataError);
-        }
-      );
+    this.userData$ = this._demoService.getData();
   }
 }
