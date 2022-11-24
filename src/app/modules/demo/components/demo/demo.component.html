@@ -1,5 +1,5 @@
 <div class="w-50">
-  <app-table [userData]="userData$ | async"></app-table>
+  <app-table [userData]="userData$ | async" (onEdit)="onEdit($event)" (onRemove)="onRemove($event)"></app-table>
 </div>
 
 <div class="w-50">

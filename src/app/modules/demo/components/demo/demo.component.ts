@@ -23,4 +23,12 @@ export class DemoComponent implements OnInit {
   private getData(): void {
     this.userData$ = this._demoService.getData();
   }
+
+  public onRemove(id: number): void {
+    alert("removed");
+  }
+
+  public onEdit(id: number): void {
+    alert("edit");
+  }
 }
