@@ -1,33 +1,41 @@
-<div class="d-flex w-100 justify-content-between align-content-center">
-  <h2>Users</h2>
-
-  <button class="btn btn-primary">Add</button>
+<div class="card w-100" style="width: 18rem">
+  <div class="card-header">
+    <div
+      class="border-bottom-1 border-primary mb-2 d-flex w-100 justify-content-between align-content-center"
+    >
+      <h3>Users</h3>
+      <button class="btn btn-primary">Add</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-container">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let user of userData">
+            <tr [class.table-success]="user.completed">
+              <td>{{ user.userId }}</td>
+              <td>{{ user.title }}</td>
+              <td>{{ user.completed ? "Yes" : "No" }}</td>
+              <td class="d-flex justify-content-start align-items-center">
+                <div class="hover-effect me-2" (click)="remove(user.id)">
+                  <i class="bi bi-trash"></i>
+                </div>
+                <div class="hover-effect" (click)="edit(user.id)">
+                  <i class="bi bi-pencil"></i>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Completed</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let user of userData">
-      <tr [class.table-success]="user.completed">
-        <td>{{ user.userId }}</td>
-        <td>{{ user.title }}</td>
-        <td>{{ user.completed ? "Yes" : "No" }}</td>
-        <td class="d-flex justify-content-start align-items-center">
-          <div class="action-icon me-2" (click)="remove(user.id)">
-            <i class="bi bi-trash"></i>
-          </div>
-          <div class="action-icon" (click)="edit(user.id)">
-            <i class="bi bi-pencil"></i>
-          </div>
-        </td>
-      </tr>
-    </ng-container>
-  </tbody>
-</table>

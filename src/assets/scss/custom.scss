@@ -1,0 +1,12 @@
+.hover-effect {
+  opacity: 0.8;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.table-container {
+  height: 80vh;
+  overflow-y: scroll;
+}
