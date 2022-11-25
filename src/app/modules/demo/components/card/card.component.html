@@ -1,1 +1,22 @@
-<p>card works!</p>
+<div class="card">
+  <img [src]="img" class="card-img-top" alt="img" />
+  <div class="card-body">
+    <div class="w-25 mb-2 d-flex justify-content-between align-items-center">
+      <span class="hover-effect" (click)="like()">
+        <i class="bi bi-heart"></i>
+      </span>
+      <span class="hover-effect" (click)="chat()">
+        <i class="bi bi-chat"></i>
+      </span>
+      <span class="hover-effect" (click)="send()">
+        <i class="bi bi-send"></i>
+      </span>
+    </div>
+    <p class="card-text">
+      <strong>{{ userName }}:</strong>
+      {{ text }}
+    </p>
+
+    <ng-content select="[comments]"></ng-content>
+  </div>
+</div>

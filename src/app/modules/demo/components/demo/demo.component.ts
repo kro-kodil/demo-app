@@ -80,4 +80,15 @@ export class DemoComponent implements OnInit {
         () => {}
       );
   }
+
+  public onLike(): void {
+    alert("onLike");
+  }
+
+  public onSend(): void {
+    alert("onSend");
+  }
+  public onChat(): void {
+    alert("onChat");
+  }
 }

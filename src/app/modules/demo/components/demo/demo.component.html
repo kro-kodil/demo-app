@@ -1,12 +1,25 @@
-<div class="w-50">
-  <app-table
-    [userData]="userData$ | async"
-    (onAdd)="onAdd($event)"
-    (onEdit)="onEdit($event)"
-    (onRemove)="onRemove($event)"
-  ></app-table>
-</div>
+<div class="d-flex justify-content-start">
+  <div class="w-50">
+    <app-table
+      [userData]="userData$ | async"
+      (onAdd)="onAdd($event)"
+      (onEdit)="onEdit($event)"
+      (onRemove)="onRemove($event)"
+    ></app-table>
+  </div>
 
-<div class="w-50">
-  <app-card></app-card>
+  <div class="ms-5 w-25">
+    <app-card
+      userName="Cupcake Ipsum"
+      img="https://as2.ftcdn.net/v2/jpg/03/99/89/57/1000_F_399895799_vifshttMiDzueibnEhqlGhq7KoIR3Qwo.jpg"
+      text="Muffin marshmallow chupa chups chocolate cake caramels halvah. Apple pie sweet roll jelly sweet roll dragée. Candy gingerbread marshmallow marshmallow liquorice gummi bears danish shortbread. Soufflé pie croissant chocolate bar pie oat cake icing sugar plum.      "
+      (onLike)="onLike()"
+      (onSend)="onSend()"
+      (onChat)="onChat()"
+    >
+      <div comments>
+        <div class="text-muted hover-effect">View all comments...</div>
+      </div>
+    </app-card>
+  </div>
 </div>
