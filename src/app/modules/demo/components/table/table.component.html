@@ -4,7 +4,7 @@
       class="border-bottom-1 border-primary mb-2 d-flex w-100 justify-content-between align-content-center"
     >
       <h3>Users</h3>
-      <button class="btn btn-primary">Add</button>
+      <button class="btn btn-primary" (click)="add()">Add</button>
     </div>
   </div>
   <div class="card-body">
@@ -28,7 +28,7 @@
                 <div class="hover-effect me-2" (click)="remove(user.id)">
                   <i class="bi bi-trash"></i>
                 </div>
-                <div class="hover-effect" (click)="edit(user.id)">
+                <div class="hover-effect" (click)="edit(user)">
                   <i class="bi bi-pencil"></i>
                 </div>
               </td>

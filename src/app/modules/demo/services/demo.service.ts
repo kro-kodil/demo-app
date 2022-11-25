@@ -31,15 +31,15 @@ export class DemoService {
       .pipe(map((res: any) => new UserData(res)));
   }
 
-  public createItem(data: UserData): Observable<UserData> {
+  public addItem(data: UserData): Observable<UserData> {
     return this.http
       .post(`${API}/todos`, data)
       .pipe(map((res: any) => new UserData(res)));
   }
 
-  public updateItem(id: number, data: UserData): Observable<UserData> {
+  public editItem(item: UserData): Observable<UserData> {
     return this.http
-      .post(`${API}/todos/${id}`, data)
+      .post(`${API}/todos/${item.id}`, item)
       .pipe(map((res: any) => new UserData(res)));
   }
 }

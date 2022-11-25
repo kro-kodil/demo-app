@@ -25,10 +25,38 @@ export class DemoComponent implements OnInit {
   }
 
   public onRemove(id: number): void {
-    alert("removed");
+    this._demoService
+      .deleteItem(id)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res: number) => {
+          console.log(res);
+        },
+        () => {}
+      );
   }
 
-  public onEdit(id: number): void {
-    alert("edit");
+  public onAdd(item: UserData): void {
+    this._demoService
+      .addItem(item)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res: UserData) => {
+          console.log(res);
+        },
+        () => {}
+      );
+  }
+
+  public onEdit(item: UserData): void {
+    this._demoService
+      .editItem(item)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res: UserData) => {
+          console.log(res);
+        },
+        () => {}
+      );
   }
 }
