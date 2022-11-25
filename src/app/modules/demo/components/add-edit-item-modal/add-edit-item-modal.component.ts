@@ -23,12 +23,12 @@ export class AddEditItemModalComponent implements OnInit {
       this.form = this._fb.group({
         id: [this.item.id, Validators.required],
         title: [this.item.title, Validators.required],
-        completed: [this.item.completed, Validators.required],
+        completed: [this.item.completed],
       });
     } else {
       this.form = this._fb.group({
-        title: ["", Validators.required],
-        completed: ["", Validators.required],
+        title: [undefined, Validators.required],
+        completed: [undefined],
       });
     }
   }
