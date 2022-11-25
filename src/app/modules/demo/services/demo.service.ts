@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -15,5 +15,31 @@ export class DemoService {
     return this.http
       .get(`${API}/todos/`)
       .pipe(map((res: any) => res.map((x: any) => new UserData(x))));
+  }
+
+  public deleteItem(id: number): Observable<number> {
+    const options = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" }),
+      body: id,
+    };
+    return this.http.delete(`${API}/todos/`, options).pipe(map(() => id));
+  }
+
+  public getItem(id: number): Observable<UserData> {
+    return this.http
+      .get(`${API}/todos/${id}`)
+      .pipe(map((res: any) => new UserData(res)));
+  }
+
+  public createItem(data: UserData): Observable<UserData> {
+    return this.http
+      .post(`${API}/todos`, data)
+      .pipe(map((res: any) => new UserData(res)));
+  }
+
+  public updateItem(id: number, data: UserData): Observable<UserData> {
+    return this.http
+      .post(`${API}/todos/${id}`, data)
+      .pipe(map((res: any) => new UserData(res)));
   }
 }
