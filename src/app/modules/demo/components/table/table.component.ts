@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AddEditItemModalComponent } from "src/app/modules/demo/components/add-edit-item-modal/add-edit-item-modal.component";
 import { UserData } from "src/app/modules/demo/models/user-data.model";
@@ -21,6 +22,9 @@ export class TableComponent implements OnInit {
   @Output() onRemove: EventEmitter<number> = new EventEmitter();
   @Output() onEdit: EventEmitter<UserData> = new EventEmitter();
   @Output() onAdd: EventEmitter<UserData> = new EventEmitter();
+  public sortBy: string = "id";
+  public asc: boolean = true;
+  public searchText = new FormControl("");
 
   constructor(private _modalService: NgbModal) {}
 
@@ -38,7 +42,7 @@ export class TableComponent implements OnInit {
       (res: UserData) => {
         this.onEdit.emit(res);
       },
-      (close) => {}
+      () => {}
     );
   }
   public add(): void {
@@ -49,7 +53,12 @@ export class TableComponent implements OnInit {
       (res: UserData) => {
         this.onAdd.emit(res);
       },
-      (close) => {}
+      () => {}
     );
+  }
+
+  public sort(property: string): void {
+    this.sortBy = property;
+    this.asc = !this.asc;
   }
 }

@@ -9,20 +9,38 @@
         Add User
       </button>
     </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Title</label>
+      <input type="text" class="form-control" [formControl]="searchText" />
+      {{ searchText.value }}
+    </div>
   </div>
   <div class="card-body">
     <div class="table-container">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col" class="hover-effect" (click)="sort('id')">
+              #
+              <i
+                class="bi"
+                [class.bi-caret-down]="!asc"
+                [class.bi-caret-up]="asc"
+              ></i>
+            </th>
             <th scope="col">Title</th>
             <th scope="col">Completed</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let user of userData">
+          <ng-container
+            *ngFor="
+              let user of userData
+                | filter: searchText.value:'title'
+                | sort: sortBy:asc
+            "
+          >
             <tr [class.table-success]="user.completed">
               <td>{{ user.id }}</td>
               <td>{{ user.title }}</td>

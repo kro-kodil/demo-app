@@ -7,6 +7,8 @@ import { CardComponent } from "./components/card/card.component";
 import { AddEditItemModalComponent } from "./components/add-edit-item-modal/add-edit-item-modal.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { SortPipe } from "src/app/pipes/sort.pipe";
+import { FilterPipe } from "src/app/pipes/filter.pipe";
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     TableComponent,
     CardComponent,
     AddEditItemModalComponent,
+    FilterPipe,
+    SortPipe,
   ],
   imports: [CommonModule, DemoRoutingModule, NgbModule, ReactiveFormsModule],
 })
